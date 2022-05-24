@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Home extends React.Component {
   render() {
     return (
-      <>
+      <div>
         <div>
           <nav>
             <Link data-testid="shopping-cart-button" to="/cart">
@@ -22,7 +22,7 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </div>
-      </>
+      </div>
     );
   }
 }
