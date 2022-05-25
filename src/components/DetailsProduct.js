@@ -22,6 +22,7 @@ class DetailsProduct extends React.Component {
 
   render() {
     const { details } = this.state;
+    const { addCartList } = this.props;
     return (
       <div>
         <nav>
@@ -50,6 +51,15 @@ class DetailsProduct extends React.Component {
                   </li>
                 ))}
               </ul>
+              <button
+                type="button"
+                data-testid="product-detail-add-to-cart"
+                value={ JSON.stringify(el) }
+                onClick={ addCartList }
+              >
+                Adicionar ao Carrinho
+
+              </button>
             </div>
           ))}
         </div>
@@ -64,6 +74,7 @@ DetailsProduct.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  addCartList: PropTypes.func.isRequired,
 };
 
 export default DetailsProduct;

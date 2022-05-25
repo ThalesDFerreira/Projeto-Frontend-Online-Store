@@ -17,6 +17,7 @@ class App extends React.Component {
     mensage: '',
     productsObjBtn: [],
     mensage2: '',
+    productList: [],
   }
 
   componentDidMount() {
@@ -65,6 +66,14 @@ class App extends React.Component {
     });
   };
 
+  addCartList = ({ target }) => {
+    const { value } = target;
+    const list = JSON.parse(value);
+    const { productList } = this.state;
+    productList.push(list);
+    localStorage.setItem('cart', JSON.stringify(productList));
+  };
+
   render() {
     const {
       categories,
@@ -91,12 +100,16 @@ class App extends React.Component {
               onClickCatBtn={ this.catBtn }
               productsObjBtn={ productsObjBtn }
               mensage2={ mensage2 }
+              addCartList={ this.addCartList }
             />) }
           />
           <Route path="/cart" component={ Cart } />
           <Route
             path="/:id"
-            render={ (props) => (<DetailsProduct { ...props } />) }
+            render={ (props) => (<DetailsProduct
+              { ... props }
+              addCartList={ this.addCartList }
+            />) }
           />
         </Switch>
       </BrowserRouter>

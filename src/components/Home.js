@@ -14,6 +14,7 @@ class Home extends React.Component {
       onClickCatBtn,
       productsObjBtn,
       mensage2,
+      addCartList,
     } = this.props;
 
     return (
@@ -92,6 +93,15 @@ class Home extends React.Component {
                       Detalhes do Produto
 
                     </Link>
+                    <button
+                      type="button"
+                      data-testid="product-add-to-cart"
+                      value={ JSON.stringify(element) }
+                      onClick={ addCartList }
+                    >
+                      Adicionar ao Carrinho
+
+                    </button>
                   </div>
                 ))
                 : <h4>{ mensage2 }</h4>
@@ -113,7 +123,7 @@ Home.propTypes = {
   onClickCatBtn: PropTypes.func.isRequired,
   productsObjBtn: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   mensage2: PropTypes.string.isRequired,
-
+  addCartList: PropTypes.func.isRequired,
 };
 
 export default Home;
