@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   render() {
-    const { categ } = this.props;
+    const {
+      categ,
+      inputPesquisa,
+      onChange,
+      onClick,
+      productsObj,
+      mensage,
+    } = this.props;
 
     return (
       <div>
@@ -17,8 +24,23 @@ class Home extends React.Component {
         </div>
         <div>
           <label htmlFor="pesquisa">
-            <input id="pesquisa" type="text" placeholder="Pesquisa" />
+            <input
+              data-testid="query-input"
+              id="pesquisa"
+              type="text"
+              value={ inputPesquisa }
+              name="inputPesquisa"
+              onChange={ onChange }
+            />
           </label>
+          <button
+            type="button"
+            name="btnSearch"
+            data-testid="query-button"
+            onClick={ onClick }
+          >
+            Busca
+          </button>
         </div>
         <div>
           <p data-testid="home-initial-message">
@@ -38,6 +60,19 @@ class Home extends React.Component {
               </button>
             ))}
           </ul>
+          <div>
+            {
+              productsObj.length > 0
+                ? productsObj.map((el) => (
+                  <div key={ el.id } data-testid="product">
+                    <img src={ el.thumbnail } alt={ el.title } />
+                    <p>{ el.title }</p>
+                    <p>{ `R$ ${el.price}` }</p>
+                  </div>
+                ))
+                : <h4>{ mensage }</h4>
+            }
+          </div>
         </div>
       </div>
     );
@@ -46,6 +81,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
   categ: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  inputPesquisa: PropTypes.string.isRequired,
+  productsObj: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  mensage: PropTypes.string.isRequired,
 };
 
 export default Home;
