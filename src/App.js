@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Cart from './components/Cart';
+import DetailsProduct from './components/DetailsProduct';
 import {
   getCategories,
   getProductsFromQuery,
@@ -93,6 +94,10 @@ class App extends React.Component {
             />) }
           />
           <Route path="/cart" component={ Cart } />
+          <Route
+            path="/:id"
+            render={ (props) => (<DetailsProduct { ...props } />) }
+          />
         </Switch>
       </BrowserRouter>
     );

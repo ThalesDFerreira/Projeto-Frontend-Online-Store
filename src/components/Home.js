@@ -85,6 +85,13 @@ class Home extends React.Component {
                     <img src={ element.thumbnail } alt={ element.title } />
                     <p>{ element.title }</p>
                     <p>{ `R$ ${element.price}` }</p>
+                    <Link
+                      data-testid="product-detail-link"
+                      to={ `/${element.id}` }
+                    >
+                      Detalhes do Produto
+
+                    </Link>
                   </div>
                 ))
                 : <h4>{ mensage2 }</h4>
