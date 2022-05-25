@@ -9,8 +9,11 @@ class Home extends React.Component {
       inputPesquisa,
       onInputChange,
       onBtnClick,
-      productsObj,
+      productsObjInput,
       mensage,
+      onClickCatBtn,
+      productsObjBtn,
+      mensage2,
     } = this.props;
 
     return (
@@ -55,6 +58,7 @@ class Home extends React.Component {
                 data-testid="category"
                 id={ el.id }
                 type="button"
+                onClick={ onClickCatBtn }
               >
                 { el.name }
               </button>
@@ -62,8 +66,8 @@ class Home extends React.Component {
           </ul>
           <div>
             {
-              productsObj.length > 0
-                ? productsObj.map((el) => (
+              productsObjInput.length > 0
+                ? productsObjInput.map((el) => (
                   <div key={ el.id } data-testid="product">
                     <img src={ el.thumbnail } alt={ el.title } />
                     <p>{ el.title }</p>
@@ -71,6 +75,19 @@ class Home extends React.Component {
                   </div>
                 ))
                 : <h4>{ mensage }</h4>
+            }
+          </div>
+          <div>
+            {
+              productsObjBtn.length > 0
+                ? productsObjBtn.map((element) => (
+                  <div key={ element.id } data-testid="product">
+                    <img src={ element.thumbnail } alt={ element.title } />
+                    <p>{ element.title }</p>
+                    <p>{ `R$ ${element.price}` }</p>
+                  </div>
+                ))
+                : <h4>{ mensage2 }</h4>
             }
           </div>
         </div>
@@ -84,8 +101,12 @@ Home.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onBtnClick: PropTypes.func.isRequired,
   inputPesquisa: PropTypes.string.isRequired,
-  productsObj: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  productsObjInput: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   mensage: PropTypes.string.isRequired,
+  onClickCatBtn: PropTypes.func.isRequired,
+  productsObjBtn: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  mensage2: PropTypes.string.isRequired,
+
 };
 
 export default Home;
