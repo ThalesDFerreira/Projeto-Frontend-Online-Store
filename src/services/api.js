@@ -22,8 +22,8 @@ export async function getProductsFromCategory(categoryId) {
   return categoryIdResults;
 }
 
-// export async function getProductId(id) {
-//   const result = await fetch(`https://api.mercadolibre.com/items/${id}`);
-//   const productId = await result.json();
-//   return productId;
-// }
+export async function getCategoriesList(id) {
+  const result = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${id}`);
+  const categories = await result.json();
+  return categories;
+}
