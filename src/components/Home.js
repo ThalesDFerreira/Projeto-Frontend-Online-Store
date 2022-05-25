@@ -7,8 +7,8 @@ class Home extends React.Component {
     const {
       categ,
       inputPesquisa,
-      onChange,
-      onClick,
+      onInputChange,
+      onBtnClick,
       productsObj,
       mensage,
     } = this.props;
@@ -30,14 +30,14 @@ class Home extends React.Component {
               type="text"
               value={ inputPesquisa }
               name="inputPesquisa"
-              onChange={ onChange }
+              onChange={ onInputChange }
             />
           </label>
           <button
             type="button"
             name="btnSearch"
             data-testid="query-button"
-            onClick={ onClick }
+            onClick={ onBtnClick }
           >
             Busca
           </button>
@@ -81,8 +81,8 @@ class Home extends React.Component {
 
 Home.propTypes = {
   categ: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
-  onChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onBtnClick: PropTypes.func.isRequired,
   inputPesquisa: PropTypes.string.isRequired,
   productsObj: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   mensage: PropTypes.string.isRequired,

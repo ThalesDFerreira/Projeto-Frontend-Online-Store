@@ -2,7 +2,10 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Cart from './components/Cart';
-import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
+import {
+  getCategories,
+  getProductsFromQuery,
+} from './services/api';
 
 class App extends React.Component {
   state = {
@@ -18,7 +21,7 @@ class App extends React.Component {
 
   searchProducts = async () => {
     const { inputPesquisa } = this.state;
-    const result = await getProductsFromCategoryAndQuery(undefined, inputPesquisa);
+    const result = await getProductsFromQuery(inputPesquisa);
     this.setState({
       productsObj: result.results,
       mensage: 'Nenhum produto foi encontrado',
@@ -46,8 +49,8 @@ class App extends React.Component {
             path="/"
             render={ () => (<Home
               categ={ categories }
-              onChange={ this.onInputChange }
-              onClick={ this.searchProducts }
+              onInputChange={ this.onInputChange }
+              onBtnClick={ this.searchProducts }
               inputPesquisa={ inputPesquisa }
               productsObj={ productsObj }
               mensage={ mensage }
